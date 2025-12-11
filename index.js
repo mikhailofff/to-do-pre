@@ -22,7 +22,13 @@ function loadTasks() {
 function createItem(item) {
 	const template = document.getElementById("to-do__item-template");
 	const clone = template.content.querySelector(".to-do__item").cloneNode(true);
+
 	const textElement = clone.querySelector(".to-do__item-text");
+	textElement.addEventListener('blur', function(event) {
+		textElement.setAttribute("contenteditable", "false");
+		const items = getTasksFromDOM();
+		saveTasks(items);
+	})
 	
 	const deleteButton = clone.querySelector(".to-do__item-button_type_delete");
 	deleteButton.addEventListener("click", function(event) {
@@ -42,7 +48,7 @@ function createItem(item) {
 
 	const editButton = clone.querySelector(".to-do__item-button_type_edit");
 	editButton.addEventListener("click", function(event) {
-		textElement.setAttribute(contenteditable, "true");
+		textElement.setAttribute("contenteditable", "true");
 		textElement.focus();
 	})
 
