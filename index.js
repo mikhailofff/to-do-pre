@@ -30,13 +30,12 @@ function createItem(item) {
 	});
 
 	textElement.addEventListener('blur', function(event) {
+		textElement.setAttribute("contenteditable", "false");
 		if(textElement.textContent.trim()) {
-			textElement.setAttribute("contenteditable", "false");
 			const items = getTasksFromDOM();
 			saveTasks(items);
 		}
 		else {
-			alert("Задача не может быть пустой");
 			textElement.textContent = originalText;
 		}
 	});
@@ -88,9 +87,6 @@ formElement.addEventListener("submit", function(event) {
 		items = getTasksFromDOM();
 		saveTasks(items);
 		inputElement.value = "";
-	}
-	else {
-		alert("Задача не может быть пустой");
 	}
 });
 
