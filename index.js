@@ -84,7 +84,7 @@ formElement.addEventListener("submit", function(event) {
 	event.preventDefault();
 	if(inputElement.value.trim()) {
 		listElement.prepend(createItem(inputElement.value));
-		items = getTasksFromDOM();
+		const items = getTasksFromDOM();
 		saveTasks(items);
 		inputElement.value = "";
 	}
